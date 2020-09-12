@@ -30,7 +30,7 @@ db.once('open', function () {
                 console.log("error query");
             } else {
                 // console.log(result);
-                res.status(200).send(result)
+                res.header('Access-Control-Allow-Origin', '*').status(200).send(result)
             }
         });
     })
@@ -41,7 +41,7 @@ db.once('open', function () {
                 console.log("error query"+ err);
             } else {
                 // console.log(result);
-                res.status(200).send(result)
+                res.header('Access-Control-Allow-Origin', '*').status(200).send(result)
             }
         });
     })
@@ -54,7 +54,7 @@ db.once('open', function () {
             } else {
                 console.log("update document success");
                 console.log(doc);
-                res.status(200).send(doc)
+                res.header('Access-Control-Allow-Origin', '*').status(200).send(doc)
             }
         });
     })
@@ -67,7 +67,7 @@ db.once('open', function () {
             } else {
                 console.log("delete document success");
                 console.log(doc);
-                res.status(200).send(doc)
+                res.header('Access-Control-Allow-Origin', '*').status(200).send(doc)
             }
         });
     })
