@@ -10,6 +10,7 @@
     "start": "nodemon app.js",
     "dev": "nodemon app.js"
   },
+  "proxy": "nodejsreactjstodo-backend.herokuapp.com",
   "author": "Syed",
   "license": "ISC",
   "dependencies": {
