@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "api endpoints for todo list",
   "main": "app.js",
+  "engines": {
+    "node": "12.18.3"
+  },
   "scripts": {
     "start": "nodemon app.js",
     "dev": "nodemon app.js"
