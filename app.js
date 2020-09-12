@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 const app = express()
 const path = require("path");
-const port = 8080;
+const port = process.env.PORT || 8080;
 // for parsing application/json
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +20,7 @@ db.once('open', function () {
         priority: String
     });
     const Item = db.model('items', todoSchema);
-    app.get('https://nodejsreactjstodo-backend.herokuapp.com/api/all', (req, res) => {
+    app.get('/api/all', (req, res) => {
         Item.find({}, function (err, result) {
             if (err) {
                 console.log("error query");
@@ -30,7 +30,7 @@ db.once('open', function () {
             }
         });
     })
-    app.post('https://nodejsreactjstodo-backend.herokuapp.com/api/add', (req, res) => {
+    app.post('/api/add', (req, res) => {
         //console.log(req.body)
         Item.create(req.body, function (err, result) {
             if (err) {
@@ -41,7 +41,7 @@ db.once('open', function () {
             }
         });
     })
-    app.post('https://nodejsreactjstodo-backend.herokuapp.com/api/update', (req, res) => {
+    app.post('/api/update', (req, res) => {
         // console.log(req.body)
         Item.findOneAndUpdate({ id: req.body.id }, { $set: { task: req.body.task, completed: req.body.completed } }, 
         function (err, doc) {
@@ -54,7 +54,7 @@ db.once('open', function () {
             }
         });
     })
-    app.post('https://nodejsreactjstodo-backend.herokuapp.com/api/delete', (req, res) => {
+    app.post('/api/delete', (req, res) => {
         // console.log(req.body)
         Item.deleteOne({ id: req.body.id }, 
         function (err, doc) {
@@ -68,9 +68,9 @@ db.once('open', function () {
         });
     })
 });
-app.get('/', (req, res) => {
-    res.send('Yeah it is working!')
-})
+// app.get('/', (req, res) => {
+//     res.send('item saved')
+// })
 app.listen(port, () => {
     console.log('server established!! @' + port)
 })
